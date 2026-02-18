@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gold: #c5a96e;
+}
+
+#particle-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  transition: opacity 1s;
+}
+#dashboard-layer.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+}
+
+.glass-panel {
+  @apply bg-gray-900/80 backdrop-blur-xl border border-white/10 shadow-2xl border-l-2 border-l-gold;
+}
+.glass-pill {
+  @apply bg-white/5 border border-white/10 backdrop-blur-md;
+}
+
+input[type="range"] {
+  @apply appearance-none bg-transparent cursor-pointer h-5;
+}
+input[type="range"]::-webkit-slider-thumb {
+  @apply appearance-none w-3.5 h-3.5 rounded-full bg-gold -mt-1.5 shadow-[0_0_15px_rgba(197,169,110,0.6)] transition-transform duration-100;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  @apply scale-125;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  @apply w-full h-0.5 bg-gray-700 rounded-sm;
+}
+
+.btn-exploding {
+  animation: btnExplodeAnim 0.6s forwards ease-out;
+}
+@keyframes btnExplodeAnim {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+    filter: blur(0);
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+    filter: blur(4px);
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+    filter: blur(10px);
+  }
+}
+
+.wave-bar {
+  width: 4px;
+  background: linear-gradient(to top, #c5a96e, #8a7342);
+  border-radius: 4px;
+  animation: audioWave 1.2s infinite ease-in-out;
+}
+@keyframes audioWave {
+  0%,
+  100% {
+    height: 15%;
+    opacity: 0.3;
+  }
+  50% {
+    height: 100%;
+    opacity: 1;
+    box-shadow: 0 0 15px #c5a96e;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-800 rounded-full;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gold;
+}
